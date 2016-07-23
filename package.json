@@ -1,6 +1,6 @@
 {
     "name": "gherkinintelisense",
-    "displayName": "GherkinIntelisense",
+    "displayName": "Gherkin Intelisense",
     "description": "Gherkin InteliSense support",
     "version": "0.0.1",
     "publisher": "STrotsenko",
@@ -10,16 +10,28 @@
     "categories": [
         "Other"
     ],
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/segvan/GherkinIntellisense.git"
+  },
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.gherkinintelisense"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
-    },
+            "command": "extension.gherkinintelisense",
+            "title": "Gherkin Intelisense"
+        }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.gherkinintelisense",
+        "key": "ctrl+shift+g",
+        "when": "editorTextFocus"
+      }
+    ]
+  }, 
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
         "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
@@ -28,5 +40,10 @@
     "devDependencies": {
         "typescript": "^1.8.5",
         "vscode": "^0.11.0"
-    }
+    },
+     "dependencies": {
+    "lodash": "4.13.1",
+    "node-fetch": "1.5.3",
+    "xml2js": "0.4.16"
+  }
 }
