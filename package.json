@@ -1,7 +1,7 @@
 {
-    "name": "gherkinintelisense",
-    "displayName": "Gherkin Intelisense",
-    "description": "Gherkin InteliSense support",
+    "name": "gherkinintellisense",
+    "displayName": "Gherkin Intellisense",
+    "description": "Gherkin IntelliSense support",
     "version": "0.0.1",
     "publisher": "STrotsenko",
     "engines": {
@@ -15,18 +15,18 @@
     "url": "https://github.com/segvan/GherkinIntellisense.git"
   },
     "activationEvents": [
-        "onCommand:extension.gherkinintelisense"
+        "onCommand:extension.gherkinintellisense"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [{
-            "command": "extension.gherkinintelisense",
-            "title": "Gherkin Intelisense"
+            "command": "extension.gherkinintellisense",
+            "title": "Gherkin Intellisense"
         }
     ],
     "keybindings": [
       {
-        "command": "extension.gherkinintelisense",
+        "command": "extension.gherkinintellisense",
         "key": "ctrl+shift+g",
         "when": "editorTextFocus"
       }
