@@ -6,7 +6,7 @@ export default function () {
     
     var LineByLineReader = require('line-by-line');
     
-    return <PromiseLike<string[]>>new Promise<string[]>((resolve, reject) =>
+    return new Promise<string[]>((resolve, reject) =>
     {
         var lr = new LineByLineReader("C:\\Users\\STrotsen\\Documents\\Projects\\ConfigurationManager\\web\\test\\Unit4.ConfigurationManager.Web.GuiTests\\features\\featureDefinitions\\_toolGerkinAnalyser\\raw-steps-list.feature"),
         result = [];
