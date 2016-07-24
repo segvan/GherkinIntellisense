@@ -4,29 +4,26 @@
 import * as vscode from 'vscode';
 import { GherkinProvider } from './GherkinProvider';
 
-var disposableProvider;
-var isProviderEnabled = false;
+var disposable;
+var isExtEnabled = false;
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     let disposable = vscode.commands.registerCommand('extension.gherkinintellisense', () => {        
-        if (isProviderEnabled) {
-            isProviderEnabled = false;
+        if (isExtEnabled) {
+            isExtEnabled = false;
             vscode.window.setStatusBarMessage('Gherkin Intellisense disabled');
-            vscode.Disposable.from(disposableProvider).dispose();
+            vscode.Disposable.from(disposable).dispose();
         } else {
-            isProviderEnabled = true;
+            isExtEnabled = true;
             vscode.window.setStatusBarMessage('Gherkin Intellisense enabled');
             var gherkinProvider = new GherkinProvider();
-            const triggers = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
-            disposableProvider = vscode.languages.registerCompletionItemProvider('*', gherkinProvider, ...triggers);
+            disposable = vscode.languages.registerCompletionItemProvider('*', gherkinProvider);
         }
-
     });
 
     context.subscriptions.push(disposable);

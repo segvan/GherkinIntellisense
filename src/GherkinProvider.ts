@@ -1,17 +1,18 @@
 'use strict';
 
-import { CompletionItemProvider, TextDocument, Position, CompletionItem, CancellationToken } from 'vscode';
+import * as vscode from 'vscode';
+import stepsReader from './gStepsReader'
 
-export class GherkinProvider implements CompletionItemProvider {
-    provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken): Thenable<CompletionItem[]> {
-        const lineAt = document.lineAt(position);
-        const lineText = document.getText(lineAt.range);
-       
-        return new Promise((resolve, reject) => {
-            var items = ["test1","test2"].map((item) => {
-                                        return new CompletionItem(item);
-                                    });                                    
-            resolve(items);
-        });
+let allSteps = stepsReader().then(steps => steps.map(step => new vscode.CompletionItem(step)));
+
+export class GherkinProvider implements vscode.CompletionItemProvider {
+    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): Thenable<vscode.CompletionItem[]> {
+       return new Promise((resolve, reject) => {
+        resolve(allSteps);
+       });
+    }
+    
+    resolveCompletionItem(item: vscode.CompletionItem, token: vscode.CancellationToken): Thenable<vscode.CompletionItem>{
+        return null;
     }
 }
