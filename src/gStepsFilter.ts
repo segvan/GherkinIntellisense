@@ -14,8 +14,10 @@ function stepsFilter(currentValue,index,arr) {
     }
 }
 
-export default function (line:vscode.TextLine, allSteps:vscode.CompletionItem[]) {    
-    var filteredSteps = allSteps.filter(stepsFilter, line.text);
-    filteredSteps.forEach(step => step.textEdit = new vscode.TextEdit(line.range, step.label));
+export default function (line:vscode.TextLine, allSteps:vscode.CompletionItem[]) {   
+    var lineText =  line.text.trim();
+    var filteredSteps = allSteps.filter(stepsFilter, lineText);
+    var range = new vscode.Range(line.lineNumber, line.firstNonWhitespaceCharacterIndex, line.lineNumber, line.firstNonWhitespaceCharacterIndex + lineText.length);
+    filteredSteps.forEach(step => step.textEdit = new vscode.TextEdit(range, step.label));
     return filteredSteps;
 }
