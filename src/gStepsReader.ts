@@ -17,8 +17,11 @@ export default function () {
             reject(err.message);
         });
 
-        lr.on('line', function (line) {
-            result.push(line);
+        lr.on('line', function (line) { 
+            line.trim();
+            if(line !== ""){          
+                result.push(line);
+            }
         });
 
         lr.on('end', function () {
