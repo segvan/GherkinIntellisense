@@ -1,18 +1,19 @@
 'use strict';
 
-import { workspace } from 'vscode'
+import * as vscode from 'vscode'
 
 export default function () {
     
     var LineByLineReader = require('line-by-line');
     
     return new Promise<string[]>((resolve, reject) =>
-    {
-        var lr = new LineByLineReader("C:\\Users\\STrotsen\\Documents\\Projects\\ConfigurationManager\\web\\test\\Unit4.ConfigurationManager.Web.GuiTests\\features\\featureDefinitions\\_toolGerkinAnalyser\\raw-steps-list.feature"),
+    {        
+        var lr = new LineByLineReader(vscode.workspace.rootPath + "\\_toolGerkinAnalyser\\steps-list.feature"),
         result = [];
 
         lr.on('error', function (err) {        
             // 'err' contains error object
+            vscode.window.showWarningMessage(err.message);
             reject(err.message);
         });
 
