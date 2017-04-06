@@ -1,3 +1,5 @@
+code --install-extension stevejpurves.cucumber
+
 # gherkinintelisense README
 
 This is the README for your extension "gherkinintelisense". After writing up a brief description, we recommend including the following sections.
